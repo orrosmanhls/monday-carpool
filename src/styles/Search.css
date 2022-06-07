@@ -1,0 +1,11 @@
+.container {
+	text-align: center;
+	color: #fff;
+}
+
+.search {
+	margin: 1rem auto;
+	margin-right: 1rem;
+	width: 20rem;
+	height: 1.5rem;
+}
