@@ -58,6 +58,11 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
 		iconUrl: icon,
 		shadowUrl: iconShadow,
 	});
+	let RedIcon = L.icon({
+		iconUrl:
+			'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+		shadowUrl: iconShadow,
+	});
 
 	L.Marker.prototype.options.icon = DefaultIcon;
 	return (
@@ -85,7 +90,7 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
 			{addresses.map((address) => {
 				if (address) {
 					return (
-						<Marker key={address} position={address}>
+						<Marker key={address} position={address} icon={RedIcon}>
 							<Popup>
 								A pretty CSS3 popup. <br /> Easily customizable.
 								<br />
