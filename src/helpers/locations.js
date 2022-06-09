@@ -68,4 +68,31 @@ const calculatePointsDistance = (pointA, pointB) => {
 const degToRad = (deg) => {
 	return deg * (Math.PI / 180);
 };
-export { getCoordinates, getAllAddresses, calculatePointsDistance };
+
+const filterAddressesByDistance = (addresses, distance, startAddress) => {
+	const tempFilteredAddresses = addresses.filter((address) => {
+		const distanceFromStartAddress = calculatePointsDistance(
+			address,
+			startAddress
+		);
+
+		return distanceFromStartAddress < distance / 1000 // convert radius from meters to kilometers
+			? address
+			: null;
+	});
+
+	const filteredAddressesCoordinates = tempFilteredAddresses.filter(
+		(coordinate) => {
+			return coordinate !== undefined && coordinate !== null;
+		}
+	);
+
+	return filteredAddressesCoordinates;
+};
+
+export {
+	getCoordinates,
+	getAllAddresses,
+	calculatePointsDistance,
+	filterAddressesByDistance,
+};

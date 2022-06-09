@@ -4,6 +4,7 @@ import {
 	getCoordinates,
 	getAllAddresses,
 	calculatePointsDistance,
+	filterAddressesByDistance,
 } from '../helpers/locations';
 import L from 'leaflet';
 
@@ -16,7 +17,8 @@ import 'leaflet/dist/leaflet.js';
 import '../styles/Map.css';
 
 function Map({ startCoordinates, targetCoordinates, distance }) {
-	const [addresses, setAddresses] = useState([]);
+	const [allAddresses, setAllAddresses] = useState([]);
+	const [filteredAddresses, setFilteredAddresses] = useState([]);
 
 	useEffect(() => {
 		const updateAddresses = async () => {
@@ -26,17 +28,9 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
 				allAddresses.map((address) =>
 					(async function () {
 						const data = await getCoordinates(address);
-						if (data[0]?.lat && data[0]?.lon) {
-							const addressCoordinates = [data[0].lat, data[0].lon];
-							const distanceFromStartAddress = calculatePointsDistance(
-								addressCoordinates,
-								startCoordinates
-							);
-
-							return distanceFromStartAddress < distance / 1000 // convert radius from meters to kilometers
-								? addressCoordinates
-								: null;
-						}
+						return data[0]?.lat && data[0]?.lon
+							? [data[0].lat, data[0].lon]
+							: null;
 					})()
 				)
 			);
@@ -47,11 +41,23 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
 				}
 			);
 
-			setAddresses(filteredAddressesCoordinates);
+			
+
+			setAllAddresses(filteredAddressesCoordinates);
 		};
 
 		updateAddresses();
 	}, [startCoordinates]);
+
+	useEffect(() => {
+		const filteredAddresses = filterAddressesByDistance(
+			allAddresses,
+			distance,
+			startCoordinates
+		);
+
+		setFilteredAddresses(filteredAddresses);
+	}, [distance]);
 
 	// fix react-leaflet not showing marker assets
 	let DefaultIcon = L.icon({
@@ -87,7 +93,7 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
 					A pretty CSS3 popup. <br /> Easily customizable.
 				</Popup>
 			</Marker>
-			{addresses.map((address) => {
+			{filteredAddresses.map((address) => {
 				if (address) {
 					return (
 						<Marker key={address} position={address} icon={RedIcon}>
