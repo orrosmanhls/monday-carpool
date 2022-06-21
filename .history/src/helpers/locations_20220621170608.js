@@ -7,10 +7,7 @@ const getCoordinates = async (query) => {
   const url = encodeURI(
     `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
   );
-  return await fetch(url).then(
-    (response) => response.json(),
-    (err) => []
-  );
+  return await fetch(url).then((response) => response.json());
 };
 
 const getColumnIdByName = async (name) => {
@@ -54,36 +51,24 @@ const getAllAddresses = async () => {
   return addresses;
 };
 
-const convertKeys = async (item) => {
-  const itemsObject = {};
-  itemsObject["coordinates"] = await getCoordinates(itemsObject.location);
-  item.column_values.forEach((col) => {
-    itemsObject[col.id] = col.text;
-  });
-  return itemsObject;
-};
-
 const getAllColumns = async () => {
-  // The id = 'status3' is 'direction'
   const response = await monday.api(`query {
 		boards(ids: 2773941457) {
 		  items {
 			  column_values (ids: []) {
 				  text
-				  id
+				  ids
 			  }
 		  }
 		}
   }`);
 
-  const itemsArray = await Promise.all(
-    (response.data.boards[0].items || []).map(async (item) => {
-      return await convertKeys(item);
-    })
-  );
+  const itemsArr = response.data.boards[0].items?.map((item, index) => {
+    const currField = item.column_values[index];
+    return { [currField.id]: currField.text };
+  });
 
-  console.log("itemsArray", itemsArray);
-  return itemsArray;
+  return addresses;
 };
 
 const calculatePointsDistance = (pointA, pointB) => {
@@ -131,7 +116,4 @@ export {
   getAllAddresses,
   calculatePointsDistance,
   filterAddressesByDistance,
-  getAllColumns,
 };
-
-//TODO: Replace get coordinato of Or to allData

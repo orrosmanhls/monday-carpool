@@ -127,11 +127,9 @@ const filterAddressesByDistance = (addresses, distance, startAddress) => {
 };
 
 export {
-  getCoordinates,
+  //getCoordinates,
   getAllAddresses,
   calculatePointsDistance,
   filterAddressesByDistance,
   getAllColumns,
 };
-
-//TODO: Replace get coordinato of Or to allData

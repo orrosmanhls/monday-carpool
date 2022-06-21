@@ -56,11 +56,15 @@ const getAllAddresses = async () => {
 
 const convertKeys = async (item) => {
   const itemsObject = {};
-  itemsObject["coordinates"] = await getCoordinates(itemsObject.location);
-  item.column_values.forEach((col) => {
-    itemsObject[col.id] = col.text;
-  });
-  return itemsObject;
+  console.log("HERE");
+
+  return await Promise.all(
+    item.column_values.map(async (col) => {
+      itemsObject[col.id] = col.text;
+      itemsObject["coordinates"] = await getCoordinates(itemsObject.location);
+      return itemsObject;
+    })
+  );
 };
 
 const getAllColumns = async () => {
@@ -76,6 +80,7 @@ const getAllColumns = async () => {
 		}
   }`);
 
+  console.log("gil", response.data.boards[0].items);
   const itemsArray = await Promise.all(
     (response.data.boards[0].items || []).map(async (item) => {
       return await convertKeys(item);
@@ -127,11 +132,9 @@ const filterAddressesByDistance = (addresses, distance, startAddress) => {
 };
 
 export {
-  getCoordinates,
+  //getCoordinates,
   getAllAddresses,
   calculatePointsDistance,
   filterAddressesByDistance,
   getAllColumns,
 };
-
-//TODO: Replace get coordinato of Or to allData

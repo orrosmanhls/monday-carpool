@@ -5,7 +5,6 @@ import {
   getAllAddresses,
   calculatePointsDistance,
   filterAddressesByDistance,
-  getAllColumns,
 } from "../helpers/locations";
 import L from "leaflet";
 
@@ -23,22 +22,16 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
-    const fetchAllData = async () => {
-      const data = await getAllColumns();
-      setAllData(data);
-    };
-    fetchAllData();
-
     const updateAddresses = async () => {
       const allAddresses = await getAllAddresses();
 
       const allAddressesCoordinates = await Promise.all(
         allAddresses.map((address) =>
           (async function () {
-            // const data = await getCoordinates(address);
-            // return data[0]?.lat && data[0]?.lon
-            //   ? [data[0].lat, data[0].lon]
-            //   : null;
+            const data = await getCoordinates(address);
+            return data[0]?.lat && data[0]?.lon
+              ? [data[0].lat, data[0].lon]
+              : null;
           })()
         )
       );
@@ -61,6 +54,7 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
       distance,
       startCoordinates
     );
+
     setFilteredAddresses(filteredAddresses);
   }, [distance]);
 

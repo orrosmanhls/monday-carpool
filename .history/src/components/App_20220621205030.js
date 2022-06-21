@@ -8,10 +8,10 @@ import Search from "./Search";
 import { getCoordinates } from "../helpers/locations";
 
 const App = () => {
-  const [startCoordinates, setStartCoordinates] = useState([32.07, 34.8]);
-  const [targetCoordinates, setTargetCoordinates] = useState([32.07, 34.8]);
-  const [startAddress, setStartAddress] = useState("yael rom 4, petah tikva");
-  const [officeDepartureStart, setOfficeDepartureStart] = useState("07:30");
+	const [startCoordinates, setStartCoordinates] = useState([32.07, 34.8]);
+	const [targetCoordinates, setTargetCoordinates] = useState([32.07, 34.8]);
+	const [startAddress, setStartAddress] = useState('yael rom 4, petah tikva');
+	const [officeDepartureStart, setOfficeDepartureStart] = useState("07:30");
   const [officeDepartureEnd, setOfficeDepartureEnd] = useState("10:00");
   const [homeDepartureStart, setHomeDepartureStart] = useState("17:00");
   const [homeDepartureEnd, setHomeDepartureEnd] = useState("19:00");
@@ -30,7 +30,7 @@ const App = () => {
     updateCoordinates(targetAddress, setTargetCoordinates);
   }, [startAddress, targetAddress]);
 
-  return (
+	return (
     <>
       <Search
         setStartAddress={setStartAddress}

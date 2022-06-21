@@ -3,15 +3,12 @@ const monday = mondaySdk();
 
 monday.setToken(process.env.REACT_APP_MONDAY_API_TOKEN);
 
-const getCoordinates = async (query) => {
-  const url = encodeURI(
-    `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
-  );
-  return await fetch(url).then(
-    (response) => response.json(),
-    (err) => []
-  );
-};
+// const getCoordinates = async (query) => {
+//   const url = encodeURI(
+//     `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
+//   );
+//   return await fetch(url).then((response) => response.json());
+// };
 
 const getColumnIdByName = async (name) => {
   //TODO: Change board ID to be dynamic (2773941457)
@@ -54,15 +51,6 @@ const getAllAddresses = async () => {
   return addresses;
 };
 
-const convertKeys = async (item) => {
-  const itemsObject = {};
-  itemsObject["coordinates"] = await getCoordinates(itemsObject.location);
-  item.column_values.forEach((col) => {
-    itemsObject[col.id] = col.text;
-  });
-  return itemsObject;
-};
-
 const getAllColumns = async () => {
   // The id = 'status3' is 'direction'
   const response = await monday.api(`query {
@@ -76,12 +64,11 @@ const getAllColumns = async () => {
 		}
   }`);
 
-  const itemsArray = await Promise.all(
-    (response.data.boards[0].items || []).map(async (item) => {
-      return await convertKeys(item);
-    })
-  );
-
+  const itemsArray = (response.data.boards[0].items || []).map((item) => {
+    const itemsObject = {};
+    item.column_values.forEach((col) => (itemsObject[col.id] = col.text));
+    return itemsObject;
+  });
   console.log("itemsArray", itemsArray);
   return itemsArray;
 };
@@ -127,11 +114,9 @@ const filterAddressesByDistance = (addresses, distance, startAddress) => {
 };
 
 export {
-  getCoordinates,
+  //getCoordinates,
   getAllAddresses,
   calculatePointsDistance,
   filterAddressesByDistance,
   getAllColumns,
 };
-
-//TODO: Replace get coordinato of Or to allData

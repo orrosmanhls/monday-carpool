@@ -76,6 +76,7 @@ const getAllColumns = async () => {
 		}
   }`);
 
+  console.log("gil", response.data.boards[0].items);
   const itemsArray = await Promise.all(
     (response.data.boards[0].items || []).map(async (item) => {
       return await convertKeys(item);
@@ -127,11 +128,9 @@ const filterAddressesByDistance = (addresses, distance, startAddress) => {
 };
 
 export {
-  getCoordinates,
+  //getCoordinates,
   getAllAddresses,
   calculatePointsDistance,
   filterAddressesByDistance,
   getAllColumns,
 };
-
-//TODO: Replace get coordinato of Or to allData

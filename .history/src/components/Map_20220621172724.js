@@ -24,10 +24,8 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      const data = await getAllColumns();
-      setAllData(data);
+      getAllColumns();
     };
-    fetchAllData();
 
     const updateAddresses = async () => {
       const allAddresses = await getAllAddresses();
@@ -35,10 +33,10 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
       const allAddressesCoordinates = await Promise.all(
         allAddresses.map((address) =>
           (async function () {
-            // const data = await getCoordinates(address);
-            // return data[0]?.lat && data[0]?.lon
-            //   ? [data[0].lat, data[0].lon]
-            //   : null;
+            const data = await getCoordinates(address);
+            return data[0]?.lat && data[0]?.lon
+              ? [data[0].lat, data[0].lon]
+              : null;
           })()
         )
       );
@@ -61,6 +59,7 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
       distance,
       startCoordinates
     );
+
     setFilteredAddresses(filteredAddresses);
   }, [distance]);
 
