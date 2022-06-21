@@ -17,22 +17,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TimePickers({
-  departureStart,
-  departureEnd,
-  setDepartureStart,
-  setDepartureEnd,
+  officeDepartureStart,
+  officeDepartureEnd,
+  setOfficeDepartureStart,
+  setOfficeDepartureEnd,
+  homeDepartureStart,
+  homeDepartureEnd,
+  setHomeDepartureStart,
+  setHomeDepartureEnd,
 }) {
   const classes = useStyles();
 
   return (
     <div className="time-picker-container">
-      <p>Departure Time Range</p>
+      <p>To The Office</p>
       <div className="pickers-container">
         <TextField
           id="time"
           label="Start Time"
           type="time"
-          defaultValue={departureStart}
+          defaultValue={officeDepartureStart}
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
@@ -40,13 +44,13 @@ export default function TimePickers({
           inputProps={{
             step: 300, // 5 min
           }}
-          onChange={(event) => setDepartureStart(event.target.value)}
+          onChange={(event) => setOfficeDepartureStart(event.target.value)}
         />
         <TextField
           id="time"
           label="End Time"
           type="time"
-          defaultValue={departureEnd}
+          defaultValue={officeDepartureEnd}
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
@@ -54,7 +58,38 @@ export default function TimePickers({
           inputProps={{
             step: 300, // 5 min
           }}
-          onChange={(event) => setDepartureEnd(event.target.value)}
+          onChange={(event) => setOfficeDepartureEnd(event.target.value)}
+        />
+      </div>
+      <p>Back Home</p>
+      <div className="pickers-container">
+        <TextField
+          id="time"
+          label="Start Time"
+          type="time"
+          defaultValue={homeDepartureStart}
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+          onChange={(event) => setHomeDepartureStart(event.target.value)}
+        />
+        <TextField
+          id="time"
+          label="End Time"
+          type="time"
+          defaultValue={homeDepartureEnd}
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+          onChange={(event) => setHomeDepartureEnd(event.target.value)}
         />
       </div>
     </div>

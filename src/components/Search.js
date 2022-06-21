@@ -8,10 +8,14 @@ const Search = ({
   setTargetAddress,
   distance,
   setDistance,
-  departureStart,
-  departureEnd,
-  setDepartureStart,
-  setDepartureEnd,
+  officeDepartureStart,
+  setOfficeDepartureStart,
+  officeDepartureEnd,
+  setOfficeDepartureEnd,
+  homeDepartureStart,
+  setHomeDepartureStart,
+  homeDepartureEnd,
+  setHomeDepartureEnd,
 }) => {
   const handleSearch = (event) => {
     setStartAddress(
@@ -56,10 +60,14 @@ const Search = ({
       <span>Distance radius: {distance / 1000} km</span>
       <br />
       <TimePicker
-        departureStart={departureStart}
-        departureEnd={departureEnd}
-        setDepartureStart={setDepartureStart}
-        setDepartureEnd={setDepartureEnd}
+        officeDepartureStart={officeDepartureStart}
+        officeDepartureEnd={officeDepartureEnd}
+        setOfficeDepartureStart={setOfficeDepartureStart}
+        setOfficeDepartureEnd={setOfficeDepartureEnd}
+        homeDepartureStart={homeDepartureStart}
+        homeDepartureEnd={homeDepartureEnd}
+        setHomeDepartureStart={setHomeDepartureStart}
+        setHomeDepartureEnd={setHomeDepartureEnd}
       />
       <input type="button" value="Search" onClick={handleSearch} />
     </form>
