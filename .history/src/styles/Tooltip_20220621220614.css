@@ -1,0 +1,39 @@
+.tooltip-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.tooltip-header {
+  background-color: #784bd1;
+  height: 24px;
+  border-radius: 8px 8px 0px 0px;
+  padding: 2px 16px;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  /* TODO: import font family roboto */
+}
+
+.tooltip-body {
+  display: flex;
+  padding: 12px 14px;
+}
+
+.tooltip-footer {
+  height: 48px;
+}
+
+.tooltip-body-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-label {
+  display: flex;
+}
+.leaflet-popup-content-wrapper > .leaflet-popup-content {
+  margin: 0;
+}

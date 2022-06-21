@@ -8,14 +8,11 @@ const getCoordinates = async (query) => {
   const url = encodeURI(
     `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
   );
-  const res = await fetch(url);
-  console.log("res", res);
-  //   return await fetch(url).then(
-  //     (response) => {
-  //       response.json();
-  //     },
-  //     (err) => []
-  //   );
+  console.log("url", url);
+  return await fetch(url).then(
+    (response) => response.json(),
+    (err) => []
+  );
 };
 
 const getColumnIdByName = async (name) => {

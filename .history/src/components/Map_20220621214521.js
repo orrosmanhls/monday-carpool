@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
+import Tooltip from './Tooltip'
 import {
   getCoordinates,
   getAllAddresses,
@@ -7,7 +8,6 @@ import {
   filterAddressesByDistance,
   getAllColumns,
 } from "../helpers/locations";
-import Tooltip from "./Tooltip";
 import L from "leaflet";
 
 // fix react-leaflet not showing marker assets
@@ -96,7 +96,8 @@ function Map({ startCoordinates, targetCoordinates, distance }) {
       </Marker>
       <Marker position={targetCoordinates}>
         <Popup>
-          <Tooltip />
+          <Tooltip>
+          A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
       {allData.map((item, index) => {

@@ -7,7 +7,7 @@ import {
   filterAddressesByDistance,
   getAllColumns,
 } from "../helpers/locations";
-import Tooltip from "./Tooltip";
+import "./Tooltip";
 import L from "leaflet";
 
 // fix react-leaflet not showing marker assets

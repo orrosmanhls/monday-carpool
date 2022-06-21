@@ -1,0 +1,28 @@
+.tooltip-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tooltip-header {
+  background-color: #784bd1;
+  height: 24px;
+}
+.tooltip-body {
+  display: flex;
+}
+
+.tooltip-footer {
+  height: 48px;
+}
+
+.tooltip-body-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-label {
+  display: flex;
+}
+.leaflet-popup-content {
+  margin: 0;
+}

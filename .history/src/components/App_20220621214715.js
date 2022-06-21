@@ -22,9 +22,9 @@ const App = () => {
 
   useEffect(() => {
     const updateCoordinates = async (address, setCoordinates) => {
-      // const tempCoordinates = await getCoordinates(address);
-      // console.log("url", tempCoordinates);
-      // setCoordinates([tempCoordinates[0]?.lat, tempCoordinates[0]?.lon]);
+      const tempCoordinates = await getCoordinates(address);
+      console.log("url", tempCoordinates);
+      setCoordinates([tempCoordinates[0]?.lat, tempCoordinates[0].lon]);
     };
 
     updateCoordinates(startAddress, setStartCoordinates);

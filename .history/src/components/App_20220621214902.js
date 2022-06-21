@@ -24,7 +24,7 @@ const App = () => {
     const updateCoordinates = async (address, setCoordinates) => {
       // const tempCoordinates = await getCoordinates(address);
       // console.log("url", tempCoordinates);
-      // setCoordinates([tempCoordinates[0]?.lat, tempCoordinates[0]?.lon]);
+      setCoordinates([tempCoordinates[0]?.lat, tempCoordinates[0]?.lon]);
     };
 
     updateCoordinates(startAddress, setStartCoordinates);

@@ -1,0 +1,31 @@
+.tooltip-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tooltip-header {
+  background-color: #784bd1;
+  height: 24px;
+  border-radius: 8px 8px 0px 0px;
+  padding: 2px 16px;
+  gap: 10px;
+}
+.tooltip-body {
+  display: flex;
+}
+
+.tooltip-footer {
+  height: 48px;
+}
+
+.tooltip-body-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-label {
+  display: flex;
+}
+.leaflet-popup-content-wrapper > .leaflet-popup-content {
+  margin: 0;
+}
