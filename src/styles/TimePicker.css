@@ -1,0 +1,16 @@
+.time-picker-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.time-picker-container p {
+    color: black;
+    font-weight: bold;
+    text-align: left;
+}
+
+.pickers-container {
+    display: flex;
+}

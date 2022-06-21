@@ -16,6 +16,8 @@ const App = () => {
 	const [startAddress, setStartAddress] = useState('yael rom 4, petah tikva');
 	const [targetAddress, setTargetAddress] = useState('Har Sinai 1,Tel Aviv');
 	const [distance, setDistance] = useState(1500);
+	const [departureStart, setDepartureStart] = useState("07:30");
+  const [departureEnd, setDepartureEnd] = useState("10:00");
 
 	useEffect(() => {
 		const updateCoordinates = async (address, setCoordinates) => {
@@ -28,20 +30,24 @@ const App = () => {
 	}, [startAddress, targetAddress]);
 
 	return (
-		<>
-			<Search
-				setStartAddress={setStartAddress}
-				setTargetAddress={setTargetAddress}
-				distance={distance}
-				setDistance={setDistance}
-			/>
-			<Map
-				startCoordinates={startCoordinates}
-				targetCoordinates={targetCoordinates}
-				distance={distance}
-			/>
-		</>
-	);
+    <>
+      <Search
+        setStartAddress={setStartAddress}
+        setTargetAddress={setTargetAddress}
+        distance={distance}
+        setDistance={setDistance}
+        departureStart={departureStart}
+        departureEnd={departureEnd}
+        setDepartureStart={setDepartureStart}
+        setDepartureEnd={setDepartureEnd}
+      />
+      <Map
+        startCoordinates={startCoordinates}
+        targetCoordinates={targetCoordinates}
+        distance={distance}
+      />
+    </>
+  );
 };
 
 export default App;
